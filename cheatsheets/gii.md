@@ -1,4 +1,5 @@
-# Mettre à jour le schéma de la base
+# GII
+## Mettre à jour le schéma de la base
 _Ex : m180206_174412_create_x_appnexus_thirdparty_pixels_table.php_
 _Doc : https://github.com/tradelab/v2/wiki/%5BHowTo%5D-Generate-models-with-Gii-tool_
 - Créer la table sur la base de dev

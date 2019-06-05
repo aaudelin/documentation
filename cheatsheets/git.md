@@ -1,4 +1,5 @@
-# Rebase feature with sprint branch
+# Git
+## Rebase feature with sprint branch
 - git fetch
 - git checkout _sprint_
 - git pull
@@ -12,12 +13,12 @@
 - git pull
 - git push
 
-# Revert un commit
+## Revert un commit
 - git revert {id_commit}
 - git pull
 - git push
 
-# Merging
+## Merging
 - Resolve conflicts manually
 - git add <files>
 - git commit -m 'Merging files'
