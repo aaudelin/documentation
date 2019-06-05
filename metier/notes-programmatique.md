@@ -1,5 +1,4 @@
 # Le programmatique
-=========================== 
 
 ![architecture](dsp-768x449.jpg "architecture programmatique")
 
