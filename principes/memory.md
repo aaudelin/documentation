@@ -1,16 +1,23 @@
 # Mémoire : stack (pile) et heap (tas)
 
-La pile est utilisée pour du stockage dit statique contrairement au tas qui lui propose un stockage plus dynamique. Les données sont conservées en RAM dans les 2 cas.
+Ces deux type de mémoire utilisent la RAM pour stocker la donnée. Lors du lancement de l'application un tas ainsi que plusieurs piles (1 par thread) sont allouées au contexte de l'application.
+
+En java, on contrôle les dimensions de ces objets pour l'application grâce à :
+
+* `'-Xmx'` : taille maximale du tas
+* `'-Xms'` : taille initiale du tas
+* `'-Xss'` : taille de la pile par thread
+* `'-Xnoclassgc'` : désactive le garbage collector
 
 ## Stack (pile)
 
-Liée au thread, la pile permet de stocker la donnée de manière statique.
+Liée au thread, la pile permet de stocker de la donnée relativement simple et liée à une fonction.
 
 Ainsi, lors d'un appel d'une fonction un espace est aloué et est empilé sur la pile. Cet espace contient toutes les variables locales à la méthode.
 
 La pile fontionne selon le principe FILO, ainsi plus l'emplacement créé est récent plus il sera supprimé rapidement. En outre, l'accès à la donnée est rapide.
 
-Si la pile est surchargée, une erreur StackOverflow se produira. Cela peut être le cas pas exemple lors d'appels récursifs trop longs ou de boucle infinie.
+Si la pile est surchargée, une erreur StackOverflow se produira. Cela peut être le cas pas exemple lors d'appels récursifs trop profonds ou de boucle infinie.
 
 Exemple, dans le cas d'un programme java :
 
@@ -73,19 +80,34 @@ Description :
 * Une instance de la classe `Employee` est créée dans le tas et est référencée par `employeeVar`
 * Cette instance possède une variable d'instance `age` valorisée à '35' dans le tas
 
-### Garbage Collector
+## Garbage Collector
 
 La garbage collector est lié au tas. Celui-ci parcourt les données du tas et supprime les objets qui ne sont plus référencés.
 
-## Source
+## Taille par défaut en Java
 
-The stack is the memory set aside as scratch space for a thread of execution.  When a function is called, a block is reserved on the top of the stack for local variables and some bookkeeping data.  When that function returns, the block becomes unused and can be used the next time a function is called.  The stack is always reserved in a LIFO (last in first out) order; the most recently reserved block is always the next block to be freed.  This makes it really simple to keep track of the stack; freeing a block from the stack is nothing more than adjusting one pointer.
+```bash
+-Xms size in bytes
+Sets the initial size of the Java heap.
+The default size is 2097152 (2MB).
+The values must be a multiple of, and greater than, 1024 bytes (1KB).
+(The -server flag increases the default size to 32M.)
 
-The heap is memory set aside for dynamic allocation.  Unlike the stack, there's no enforced pattern to the allocation and deallocation of blocks from the heap; you can allocate a block at any time and free it at any time.  This makes it much more complex to keep track of which parts of the heap are allocated or free at any given time; there are many custom heap allocators available to tune heap performance for different usage patterns.
+-Xmn size in bytes
+Sets the initial Java heap size for the Eden generation.
+The default value is 640K.
+(The -server flag increases the default size to 2M.)
 
-Each thread gets a stack, while there's typically only one heap for the application (although it isn't uncommon to have multiple heaps for different types of allocation).
+-Xmx size in bytes
+Sets the maximum size to which the Java heap can grow.
+The default size is 64M.
+(The -server flag increases the default size to 128M.)
+The maximum heap limit is about 2 GB (2048MB).
+```
 
-To answer your questions directly:  
+## FAQ
+
+Source : [Lien stack overflow][3]
 
 > _To what extent are they controlled by the OS or language runtime?_
 
@@ -107,10 +129,14 @@ A clear demonstration:
 ![Images of memory sockage][1]
 Image source: [vikashazrati.wordpress.com](http://vikashazrati.wordpress.com/2007/10/01/quicktip-java-basics-stack-and-heap/)
 
-  [1]: https://vikashazrati.files.wordpress.com/2007/10/stacknheap.png
+## Sources
 
-## Autres liens
+* [Lien stack overflow][3]
+* [Vidéo tutoriel java][2]
+* [Vidéo imagée java][4]
+* [Image du stockage mémoire][1]
 
-* [Lien stack overflow](https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap)
-* [Vidéo tutoriel java](https://www.youtube.com/watch?v=UcPuWY0wn3w)
-* [Vidéo imagée java](https://www.youtube.com/watch?v=ckYwv4_Qtmo)
+[1]: https://vikashazrati.files.wordpress.com/2007/10/stacknheap.png
+[2]: https://www.youtube.com/watch?v=UcPuWY0wn3w
+[3]: https://stackoverflow.com/questions/79923/what-and-where-are-the-stack-and-heap
+[4]: https://www.youtube.com/watch?v=ckYwv4_Qtmo
