@@ -87,22 +87,11 @@ La garbage collector est lié au tas. Celui-ci parcourt les données du tas et s
 ## Taille par défaut en Java
 
 ```bash
--Xms size in bytes
-Sets the initial size of the Java heap.
-The default size is 2097152 (2MB).
-The values must be a multiple of, and greater than, 1024 bytes (1KB).
-(The -server flag increases the default size to 32M.)
+# Connaître les dimensions par défaut de la Stack
+java -XX:+PrintFlagsFinal -version | grep -i 'StackSize'
 
--Xmn size in bytes
-Sets the initial Java heap size for the Eden generation.
-The default value is 640K.
-(The -server flag increases the default size to 2M.)
-
--Xmx size in bytes
-Sets the maximum size to which the Java heap can grow.
-The default size is 64M.
-(The -server flag increases the default size to 128M.)
-The maximum heap limit is about 2 GB (2048MB).
+# Connaître les dimensions par défaut de la Heap
+java -XX:+PrintFlagsFinal -version | grep -i 'HeapSize'
 ```
 
 ## FAQ
