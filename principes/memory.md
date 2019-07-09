@@ -10,6 +10,8 @@ Ainsi, lors d'un appel d'une fonction un espace est aloué et est empilé sur la
 
 La pile fontionne selon le principe FILO, ainsi plus l'emplacement créé est récent plus il sera supprimé rapidement. En outre, l'accès à la donnée est rapide.
 
+Si la pile est surchargée, une erreur StackOverflow se produira. Cela peut être le cas pas exemple lors d'appels récursifs trop longs ou de boucle infinie.
+
 Exemple, dans le cas d'un programme java :
 
 ```java
@@ -37,6 +39,8 @@ Description :
 Le tas est un espace mémoire dynamique et est partagé entre les threads. Il est donc lié au contexte de l'application.
 
 Le tas a un accès à la donnée un peu plus lent mais n'a de limite de taille que la capacité physique de la machine. Le tas contient donc la majeure partie des données de l'application notamment l'ensemble des objets dans le cas java.
+
+Si trop d'objets sont créés ou bien que ceux-ci sont trop volumineux l'erreur OutOfMemory se produira.
 
 Exemple, dans le cas d'un programme java :
 
