@@ -123,3 +123,7 @@ System.out.println(VH_ARBRE_FIELD_TAILLE.get(arbre));
 [1]: https://blog.xebia.fr/2018/09/25/de-java-8-a-11-nouveautes-et-conseils-pour-migrer/
 [2]: https://blog.invivoo.com/java-9-les-nouveautes/
 [3]: https://www.youtube.com/watch?v=dYubeLiObqY
+[4]: https://openjdk.java.net/projects/jdk/10/
+[5]: https://openjdk.java.net/projects/jdk/11/
+[6]: https://openjdk.java.net/projects/jdk/12/
+[7]: https://openjdk.java.net/projects/jdk/13/
