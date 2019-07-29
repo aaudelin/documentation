@@ -130,7 +130,7 @@ var a="a", b="b"; // Impossible de déclarer plusieurs var
 var tableau = {"a", "b"} // Impossible, il faut typer explicitement
 var lambda = {a, b} -> a*b // Impossible, les lambdas nécessitent un type explicite
 var refMethode =  String::charAt // Impossible, il faut un type explicite
-var myInt = 15; ... myInt = "myInt"; // Impossible on ne peut pas changer le type d'une var 
+var myInt = 15; ... myInt = "myInt"; // Impossible, on ne peut pas changer le type d'une var
 ```
 
 NB : les types inférés ne peuvent pas être des super types ou abstractions (Ex pour une liste on infère ArrayList et non List)
@@ -148,7 +148,85 @@ NB : les types inférés ne peuvent pas être des super types ou abstractions (E
 
 Java 11 est une version LTS, celles-ci seront disponibles tous les 3 ans. Sachant que Java sort une version tous les 6 mois.
 
+### Inférence de type
+
+L'inférence est désormais possible dans les types des variables manipulées à l'intérieur des lambdas
+
+Exemple : `(Integer x) -> x+x => (var x) -> x+x`
+
+Il est aussi possible de ne pas indiquer le mot clé `var`, cependant sans celui-ci on ne pourra pas ajouter d'annotations comme `@NotNull`
+
+### Modifications d'API
+
+* String
+* Predicate
+* CharSequence
+* StringBuffer, StringBuilder
+
+### Visibilité classes imbriquées
+
+Les attributs privés de la classe "mère" peuvent être utilisés dans la classe imbriquée.
+
+Exemple :
+
+```java
+public class A {
+    private String myPrivateString;
+    class InnerB {
+        public void printPrivate() {
+            System.out.println(myPrivateString);
+        }
+    }
+}
+```
+
+Lors de la compilation, les deux classes seront séparées et une méthode publique permettra d'accéder au champ privé.
+
+### Dynamic class-file constants
+
+CONSTANT_Dynamic : c'est une sorte de variable finale qui sera initialisée une seule fois au cours du traitement et fera alors office de constante ensuite.
+
+### Epsilon
+
+Nouveau garbage collector expérimental "no-op" qui permet : les tests de perf, l'allocation de mémoire et les tâches très courtes.
+
+### Autres
+
+* Possible de lancer un fichier directement avec `java myFichier.java`. Fonctionne si tout le programme est contenu dans le fichier
+* API HTTP Client introduite en Java 9 et retravaillée complètement en Java 11 (`java.net.http`). Implémentation asynchrone
+* Ajout de la prise en charge d'Unicode 11
+* Suppression de certains modules dont `JavaFX, corba, transaction, activation, xml.bind, xml.ws, xml.ws.annotation`
+
 ## Java 12
+
+### Switch
+
+On peut désormais écrire des switchs de cette façon : 
+
+```java
+switch (saison) {
+  case ETE, PRINTEMPS -> allerALaPlage();
+  case HIVER -> allerAuSki();
+  default -> resterEnferme();
+}
+```
+
+Chaque case encapsule sont propre environnement:
+
+* Peut partager le même nom de variables entre les cases
+* Possible d'extraire directement une valeur du switch (`int valeur = switch(){...}`)
+* Plus besoin d'écrire de default si tous les cas sont couverts
+* Plus besoin de `break`
+
+### Améliorations de la mémoire
+
+* Concurrent class unloading : le GC est capable de libérer de l'espace sur les classes non utilisées, option désactivable avec `-XX:-ClassUnloading`
+* SHENANDOAH : GC créé par RedHat, le GC peut s'exécuter en même temps que l'exécution du programme, donc une réduction du temps de pause
+* On peut spécifier `-XX:AllocateOldGenAt=<path>` pour utiliser de la mémoire NV-DIMM sur les objets old generation. Les young generation seront dans la DRAM
+
+## Autres
+
+Cf [Lien blog invivoo Java 12][2.12]
 
 ## Java 13
 
@@ -158,12 +236,14 @@ Java 11 est une version LTS, celles-ci seront disponibles tous les 3 ans. Sachan
 * [Lien blog invivoo Java 9][2.9]
 * [Lien blog invivoo Java 10][2.10]
 * [Lien blog invivoo Java 11][2.11]
+* [Lien blog invivoo Java 12][2.12]
 * [Devoxx JM Doudoux][3]
 
 [1]: https://blog.xebia.fr/2018/09/25/de-java-8-a-11-nouveautes-et-conseils-pour-migrer/
 [2.9]: https://blog.invivoo.com/java-9-les-nouveautes/
 [2.10]: https://blog.invivoo.com/les-nouveautes-de-java-10-episode-3/
 [2.11]: https://blog.invivoo.com/les-9-nouveautes-de-java-11/
+[2.12]: https://blog.invivoo.com/a-la-decouverte-des-nouveautes-de-java-12/
 [3]: https://www.youtube.com/watch?v=dYubeLiObqY
 [4.10]: https://openjdk.java.net/projects/jdk/10/
 [4.11]: https://openjdk.java.net/projects/jdk/11/
