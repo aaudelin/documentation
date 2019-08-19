@@ -73,7 +73,7 @@ Permet de créer des collections immuables :
 3. Snapshot des informations du process
 4. Notif asynchrone : completable future
 
-### VarHandle 
+### VarHandle
 
 Permet d'avoir accès à des variables même sur des objets private 
 

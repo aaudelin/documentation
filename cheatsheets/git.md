@@ -38,6 +38,10 @@ Dans tous les cas :
 
 https://www.ekino.com/articles/comment-squasher-efficacement-ses-commits-avec-git
 
+## Encryption avec Blackbox
+
+TODO : dérouler le tuto https://www.man42.net/blog/2016/12/git-blackbox/
+
 ## Ressources
 
 - Tooltip des erreurs : https://medium.com/@i_AnkurBiswas/common-git-mistakes-and-how-to-fix-them-10184cd5fa77
