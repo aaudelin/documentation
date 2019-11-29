@@ -1,12 +1,29 @@
 # Hibernate avec Spring
 
+## Statistiques hibernate
+
+```properties
+hibernate.generate_statistics=true
+
+org.hibernate.stat=DEBUG
+```
+
+## Logs hibernate
+
+```properties
+log4j.logger.org.hibernate=info
+
+log4j.logger.org.hibernate.SQL=debug
+log4j.logger.org.hibernate.type.descriptor.sql=trace
+```
+
 ## Utiliser le second level cache
 
 ### Sur les entités
 
 Propriétés :
 
-```java
+```properties
 hibernate.cache.use_second_level_cache=true
 hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory
 ```
@@ -53,4 +70,5 @@ Les stratégies de cache
 
 - Général : https://www.baeldung.com/hibernate-second-level-cache
 - Sur les hints pratiques : https://thoughts-on-java.org/11-jpa-hibernate-query-hints-every-developer-know/
+- Sur les statistiques : https://thoughts-on-java.org/how-to-activate-hibernate-statistics-to-analyze-performance-issues/
 
